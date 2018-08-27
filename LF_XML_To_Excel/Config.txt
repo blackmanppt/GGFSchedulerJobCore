@@ -1,0 +1,2 @@
+﻿Input=Z:\部門空間\14.資訊部\SFTP\LiFung
+Output=Z:\部門空間\EDI_File

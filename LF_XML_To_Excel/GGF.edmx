@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GGFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ERROR_LOG">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ERROR_LOG" Type="text" />
+          <Property Name="ERROR_PROGRAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="ERROR_FUNCTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="ERROR_REMARK001" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATED_BY" Type="nchar" MaxLength="10" />
+          <Property Name="CREATEDATE" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LFSize">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cus_id" Type="nvarchar" MaxLength="10" />
+          <Property Name="EDISize" Type="nvarchar" MaxLength="50" />
+          <Property Name="ERPSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="建立日期" Type="datetime" />
+        </EntityType>
+        <EntityType Name="XML匯出LOG">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="檔案名稱" Type="nvarchar" MaxLength="100" />
+          <Property Name="匯入狀態" Type="int" />
+          <Property Name="Style" Type="nvarchar" MaxLength="100" />
+          <Property Name="備註" Type="nvarchar" MaxLength="100" />
+          <Property Name="建立日期" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityContainer Name="GGFModelStoreContainer">
+          <EntitySet Name="ERROR_LOG" EntityType="Self.ERROR_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LFSize" EntityType="Self.LFSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XML匯出LOG" EntityType="Self.XML匯出LOG" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GGFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GGFEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="ERROR_LOG" EntityType="GGFModel.ERROR_LOG" />
+          <EntitySet Name="XML匯出LOG" EntityType="GGFModel.XML匯出LOG" />
+          <EntitySet Name="LFSize" EntityType="GGFModel.LFSize" />
+        </EntityContainer>
+        <EntityType Name="ERROR_LOG">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ERROR_LOG1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ERROR_PROGRAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ERROR_FUNCTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ERROR_REMARK001" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="XML匯出LOG">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="檔案名稱" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="匯入狀態" Type="Int32" />
+          <Property Name="備註" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="建立日期" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Style" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LFSize">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cus_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EDISize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ERPSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="建立日期" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GGFModelStoreContainer" CdmEntityContainer="GGFEntities" >
+          <EntitySetMapping Name="ERROR_LOG">
+            <EntityTypeMapping TypeName="GGFModel.ERROR_LOG">
+              <MappingFragment StoreEntitySet="ERROR_LOG">
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="ERROR_REMARK001" ColumnName="ERROR_REMARK001" />
+                <ScalarProperty Name="ERROR_FUNCTION" ColumnName="ERROR_FUNCTION" />
+                <ScalarProperty Name="ERROR_PROGRAM" ColumnName="ERROR_PROGRAM" />
+                <ScalarProperty Name="ERROR_LOG1" ColumnName="ERROR_LOG" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XML匯出LOG">
+            <EntityTypeMapping TypeName="GGFModel.XML匯出LOG">
+              <MappingFragment StoreEntitySet="XML匯出LOG">
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="建立日期" ColumnName="建立日期" />
+                <ScalarProperty Name="備註" ColumnName="備註" />
+                <ScalarProperty Name="匯入狀態" ColumnName="匯入狀態" />
+                <ScalarProperty Name="檔案名稱" ColumnName="檔案名稱" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LFSize">
+            <EntityTypeMapping TypeName="GGFModel.LFSize">
+              <MappingFragment StoreEntitySet="LFSize">
+                <ScalarProperty Name="建立日期" ColumnName="建立日期" />
+                <ScalarProperty Name="ERPSize" ColumnName="ERPSize" />
+                <ScalarProperty Name="EDISize" ColumnName="EDISize" />
+                <ScalarProperty Name="Cus_id" ColumnName="Cus_id" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
