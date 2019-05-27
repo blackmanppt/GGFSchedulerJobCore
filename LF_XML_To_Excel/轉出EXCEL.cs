@@ -28,13 +28,27 @@ namespace LF_XML_To_Excel
                     //建立DataTable並將DataSet中的第0個Table資料給DataTable
                     DataTable dt = ds.Tables["ColorSize"];
                     //轉換數量類型
-                    dt.Columns.Add("數量", typeof(int), "Convert(Quantity,'System.Int32')");
+                    //dt.Columns.Add("數量", typeof(int), "Convert(Quantity,'System.Int32')");
+                    dt.Columns.Add("數量", typeof(int));
                     DataTable dt1 = ds.Tables["PrePack"];
                     DataTable dt2 = ds.Tables["Shipment"];
                     DataTable dt3 = ds.Tables["Item"];
                     DataTable dt4 = ds.Tables["ePM_VerContent"];
-                    string str客戶名稱 = dt4.Rows[0]["BuyerName"].ToString();
-                    str客戶名稱= (str客戶名稱.IndexOf("KO") == 0) ? "KHS" : "BLK";
+                    string str客戶名稱 = dt4.Rows[0]["12"].ToString();
+                    //str客戶名稱= (str客戶名稱.IndexOf("KO") == 0) ? "KHS" : "BLK";
+                    if (str客戶名稱.IndexOf("KO") == 0)
+                    {
+                        str客戶名稱 = "KHS";
+                    }
+                    if (str客戶名稱.IndexOf("BELK") == 0)
+                    {
+                        str客戶名稱 = "BLK";
+                    }
+                    if (str客戶名稱 != "KHS"&& str客戶名稱 != "BLK")
+                    {
+                        str客戶名稱 = "Other";
+                    }
+
                     string str版次 = dt4.Rows[0]["ePMVerNo"].ToString();
                     if(int.Parse(str版次) > 1)
                         str客戶名稱 += @"\新版次" ;
@@ -168,7 +182,8 @@ namespace LF_XML_To_Excel
                     //建立DataTable並將DataSet中的第0個Table資料給DataTable
                     DataTable dt = ds.Tables["ColorSize"];
                     //轉換數量類型
-                    dt.Columns.Add("數量", typeof(int), "Convert(Quantity,'System.Int32')");
+                    //dt.Columns.Add("數量", typeof(int), "Convert(Quantity,'System.Int32')");
+                    dt.Columns.Add("數量", typeof(int));
                     DataTable dt1 = ds.Tables["PrePack"];
                     DataTable dt2 = ds.Tables["Shipment"];
                     DataTable dt3 = ds.Tables["Item"];
